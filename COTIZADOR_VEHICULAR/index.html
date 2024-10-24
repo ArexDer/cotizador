@@ -122,10 +122,6 @@
             </div>
         </section>
 
-
-
-
-
         <!-- POPUP-->
         <!-- Popup -->
         <div id="popup" class="popup" style="display: none;">
@@ -219,35 +215,12 @@
                                 <p class="title">Tasa Administrativa:</p>
                                 <input class="tasa-F" id="tasa-F" ></input>
                                 <p class="title">Cuota Fija:</p>
-                                <input class="value"></input>
+                                <input class="cuota-F" id="cuota-F" ></input>
+                                <!-- 
                                 <p class="title">Valor de la Inscripción:</p>
                                 <input class="value"></input>
+                                -->
                             </div>
-                      
-
-                        <!-- Información del plan ESTE SIN ENTRADA Y ESTARA COMENTADO DE MOMENTO 
-                        <div class="form-row" id="formfinal">
-                            <p class="title">Monto Planificado:</p>
-                            <select id="monto" name="monto">
-                                <option value="25.000">25.000</option>
-                                <option value="30.000">30.000</option>
-                                <option value="40.000">40.000</option>
-                                <option value="50.000">50.000</option>
-                                <option value="60.000">60.000</option>
-                            </select>
-                            <p class="title">Tiempo de Planificación:</p>
-                            <input class="value" placeholder="12 meses"></input>
-                            <p class="title">Porcentaje de Entrada:</p>
-                            <input class="value"></input>
-                            <p class="title">Tasa Administrativa:</p>
-                            <p class="value">2.9%</p>
-                            <p class="title">Cuota Fija:</p>
-                            <input class="value"></input>
-                            <p class="title">Valor de la Inscripción:</p>
-                            <input class="value"></input>
-                        </div>
-                        -->
-
                         <button class="btn-quote">DESCARGAR COTIZACIÓN</button>
                     </div>
                 </div>
@@ -275,8 +248,9 @@
                         <label for="marca-suvs">Marca:</label>
                         <select id="marca-suvs">
                             <option value="">Selecciona una marca</option>
+                            <option value="toyota">Toyota</option>
+                            <option value="honda">Honda</option>
                             <option value="chevrolet">Chevrolet</option>
-                            <option value="sinnombre">Sin Nombre</option>
                         </select>
 
                         <label for="modelo-suvs">Modelo:</label>
@@ -297,8 +271,8 @@
 
 
                     <!-- SECCION DE CON ENTRADA PORCENTAJE Y MESES PLAZO-->
-                    <div class="opciones-con-entrada" id="opciones-con-entrada" style="display: none;" >
-                        <select id="porcentaje" name="porcentaje" placeholder="porcentaje">
+                    <div class="opciones-con-entrada" id="opciones-con-entrada-suvs" style="display: none;" >
+                        <select id="porcentaje-suvs" name="porcentaje" placeholder="porcentaje">
                             <option value="">Seleccione un porcentaje de entrada</option>
                             <option value="10">10%</option>
                             <option value="20">20%</option>
@@ -308,7 +282,7 @@
                             <option value="60">60%</option>
                           
                         </select>
-                        <select id="meses-plazo" name="meses-plazo" placeholder="meses-plazo">
+                        <select id="meses-plazo-suvs" name="meses-plazo" placeholder="meses-plazo">
                             <option value="">Seleccione la cantidad de meses.</option>
                             <option value="12">12 meses</option>
                             <option value="24">24 meses</option>
@@ -318,13 +292,13 @@
                             
                      
                         </select>
-                        <input class="precio-vehiculo-con-entrada" type="number" id="precio-vehiculo-con-entrada" disabled value="">
-                        <input  class="precio-porcentaje" type="text" id="precio-porcentaje" disabled value="">
-                        <input  class="precio-meses" type="text" id="precio-meses" disabled value="">
-                        <input  class="estimado" type="text" id="estimado" disabled value="">
+                        <input class="precio-vehiculo-con-entrada" type="number" id="precio-vehiculo-con-entrada-suvs" disabled value="">
+                        <input  class="precio-porcentaje" type="text" id="precio-porcentaje-suvs" disabled value="">
+                        <input  class="precio-meses" type="text" id="precio-meses-suvs" disabled value="">
+                        <input  class="estimado" type="text" id="estimado-suvs" disabled value="">
 
                         <!-- Botón de Continuar -->
-                        <button id="continuar-con-entrada">Continuar</button>
+                        <button id="continuar-con-entrada-suvs">Continuar</button>
 
 
 
@@ -334,6 +308,8 @@
                 </div>
             </div>
         </section>
+        
+        
 
         <!--CAMIONETAS
          ...........................

@@ -8,6 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
     let porcentajeGlobal = null;
     let mesesGlobal = null;
 
+    let estimadoGlobal = 0;
+
+    function reiniciarVariables() {
+        avaluoActual = 0;
+        imagenSeleccionada = "";
+        porcentajeGlobal = null;
+        mesesGlobal = null;
+        estimadoGlobal = 0;
+        console.log("Variables reiniciadas");
+    }
+
+
     const vehicles = document.querySelectorAll(".vehicle");
 
     const autoSection = document.getElementById("detalle-vehiculo-autos");
@@ -125,9 +137,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // MOSTRAR LA SECCION DE VEHICULOS SELECCIONADOS AUTOS, SUVS, CAMIONETAS, CAMION
     vehicles.forEach((vehicle) => {
         vehicle.addEventListener("click", () => {
+
+          
+
             const selectedVehicle = vehicle.querySelector("p").textContent;
 
             if (selectedVehicle === "Autos") {
+                reiniciarVariables();
                 autoSection.style.display = "flex"; // Mostrar la sección
                 suvSection.style.display = "none";
                 camionetaSection.style.display = "none";
@@ -166,9 +182,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         continuarBtn.style.display = "none"; // Ocultar el botón de continuar
                     }
                 });
+                
 
 
             } else if (selectedVehicle === "SUVs") {
+                reiniciarVariables();
                 suvSection.style.display = "flex";
                 autoSection.style.display = "none";
                 camionetaSection.style.display = "none";
@@ -182,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
                    
                     modeloSuvsSelect.innerHTML =
                         '<option value="">Selecciona un modelo</option>'; // Limpiar modelos anteriores
-                        modeloSuvsSelect.disabled = false; // Habilitar selector de modelo
+                    modeloSuvsSelect.disabled = false; // Habilitar selector de modelo
 
                     if (marcaSeleccionada) {
                         // Filtrar modelos de la marca seleccionada que sean del tipo 'autos'
@@ -207,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         continuarSUVSBtn.style.display = "none"; // Ocultar el botón de continuar
                     }
                 });
+                
                 //-------
             } else if (selectedVehicle === "Camionetas") {
                 camionetaSection.style.display = "flex";
@@ -230,35 +249,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    /*
-      // Actualizar los modelos cuando se selecciona una marca
-      marcaSelect.addEventListener('change', () => {
-          const marcaSeleccionada = marcaSelect.value;
-          modeloSelect.innerHTML = '<option value="">Selecciona un modelo</option>'; // Limpiar modelos anteriores
-          modeloSelect.disabled = false; // Habilitar selector de modelo
-  
-          if (marcaSeleccionada ) {
-              modelos[marcaSeleccionada].forEach(modelo => {
-                  const option = document.createElement('option');
-                  option.value = modelo.nombre;
-                  option.textContent = modelo.nombre;
-                  modeloSelect.appendChild(option);
-              });
-  
-  
-          } else {
-              modeloSelect.disabled = true; // Deshabilitar si no se selecciona una marca
-              continuarBtn.style.display = 'none'; // Ocultar el botón de continuar
-          }
-      });
-      */
-
     //+++++++++++++
-    // Actualizar las agencias cuando se selecciona una provincia
+    // SELECCION DE LAS AGENCIAS...
     provinciaSelect.addEventListener("change", () => {
         const provinciaSeleccionada = provinciaSelect.value;
-        agenciaSelect.innerHTML = '<option value="">Selecciona un agencia</option>'; // Limpiar modelos anteriores
-        agenciaSelect.disabled = false; // Habilitar selector de modelo
+        agenciaSelect.innerHTML = '<option value="">Selecciona un agencia</option>'; 
+        agenciaSelect.disabled = false; 
 
         if (provinciaSeleccionada) {
             agencias[provinciaSeleccionada].forEach((agencia) => {
@@ -268,8 +264,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 agenciaSelect.appendChild(option);
             });
         } else {
-            modeloSelect.disabled = true; // Deshabilitar si no se selecciona una marca
-            continuarBtn.style.display = "none"; // Ocultar el botón de continuar
+            modeloSelect.disabled = true;
+            continuarBtn.style.display = "none"; 
         }
     });
 
@@ -318,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 precioSuvsInput.value = modelo.precio; // Actualizar el precio
 
                 // Actualizar variables globales
-                avaluoActual = precioInput.value;
+                avaluoActual = precioSuvsInput.value;
                 // Asignar el precio a la variable global
                 imagenSeleccionada = modelo.imagen; // Asignar la imagen a la variable global
             }
@@ -328,12 +324,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    //---- camionetas modelo imagen
+    //---- IMAGENES DE LOS VEHICULOS DE CADA SECCION
 
     // con esto hago que si se me muestre el valor del vehiculo seleccionado en la variable global.
     avaluoActual = avaluoActual;
-
+    /*
+    ----------
+    --------
+    */
     //CONTINUAR LUEGO DE LA SELECCION DE MARCA Y MODELO 
+    //AUTOS
+    
     continuarBtn.addEventListener("click", () => {
         // Ocultar la parte de los selectores de marca y modelo
         document.getElementById("selectores").style.display = "none";
@@ -355,11 +356,16 @@ document.addEventListener("DOMContentLoaded", () => {
     //----------------------------------------------
     //PARTES CON ENTRADA
 
+
+
     //FUNCION GLOBAL DE CALCULOS DE PORCENTAJES Y MESES
-    function actualizarCalculos(precioVehiculo, porcentajeEntrada, mesesPlazo) {
+    function actualizarCalculos(precioVehiculo, porcentajeEntrada, mesesPlazo, ids,estimadoFuncion) {
         // Asignar los valores a las variables globales
+    
         porcentajeGlobal = porcentajeEntrada;
+
         mesesGlobal = mesesPlazo;
+        
     
         // Verificar si el precio del vehículo es válido
         if (isNaN(precioVehiculo) || precioVehiculo <= 0) {
@@ -397,12 +403,15 @@ document.addEventListener("DOMContentLoaded", () => {
     
         // Cálculo de las cuotas mensuales
         const cuotasMensuales = valorTotalConInteres / mesesPlazo;
+
+        estimadoGlobal=cuotasMensuales;
     
         // Actualizar los campos de salida con los resultados calculados
-        document.getElementById("precio-porcentaje").value = valorEntrada.toFixed(2);
-        document.getElementById("precio-meses").value = valorTotalConInteres.toFixed(2);
-        document.getElementById("estimado").value = cuotasMensuales.toFixed(2);
+        document.getElementById(ids.precioPorcentaje).value = valorEntrada.toFixed(2);
+        document.getElementById(ids.precioMeses).value = valorTotalConInteres.toFixed(2);
+        document.getElementById(ids.estimado).value = cuotasMensuales.toFixed(2);
     }
+    
     
 
 
@@ -411,128 +420,92 @@ document.addEventListener("DOMContentLoaded", () => {
     --------------
     */
     //llamada a la funcion  de calculos de porcentajes y meses
+    
+    //AUTOS
     document.getElementById("con-entrada").addEventListener("click", () => {
-        // Asignar el valor al campo de "precio-vehiculo-con-entrada"
         document.getElementById("precio-vehiculo-con-entrada").value = avaluoActual;
-        const precioVehiculo = parseFloat(
-            document.getElementById("precio-vehiculo-con-entrada").value
-        );
+        const precioVehiculo = parseFloat(document.getElementById("precio-vehiculo-con-entrada").value);
         console.log(avaluoActual);
     
-        // Agregar listeners para los cambios en los selects de porcentaje y meses-plazo
         document.getElementById("porcentaje").addEventListener("change", () => {
             const porcentajeEntrada = parseFloat(document.getElementById("porcentaje").value);
             const mesesPlazo = parseInt(document.getElementById("meses-plazo").value);
             
-            // Actualizar los valores globales y los cálculos
-            actualizarCalculos(precioVehiculo, porcentajeEntrada, mesesPlazo);
+            // Llamada con los IDs correctos
+            actualizarCalculos(precioVehiculo, porcentajeEntrada, mesesPlazo, {
+                precioPorcentaje: "precio-porcentaje",
+                precioMeses: "precio-meses",
+                estimado: "estimado"
+            });
         });
     
         document.getElementById("meses-plazo").addEventListener("change", () => {
             const porcentajeEntrada = parseFloat(document.getElementById("porcentaje").value);
             const mesesPlazo = parseInt(document.getElementById("meses-plazo").value);
             
-            // Actualizar los valores globales y los cálculos
-            actualizarCalculos(precioVehiculo, porcentajeEntrada, mesesPlazo);
+            actualizarCalculos(precioVehiculo, porcentajeEntrada, mesesPlazo, {
+                precioPorcentaje: "precio-porcentaje",
+                precioMeses: "precio-meses",
+                estimado: "estimado"
+            });
         });
     
-        // Ocultar otras opciones
         document.getElementById("opciones-vehiculo").style.display = "none";
         document.getElementById("opciones-con-entrada").style.display = "flex";
     });
+
+
     
     
-    
-    
-    /*
-    document.getElementById("con-entrada").addEventListener("click", () => {
-        // Asignar el valor al campo de "precio-vehiculo-con-entrada"
-        document.getElementById("precio-vehiculo-con-entrada").value = avaluoActual;
-        const precioVehiculo = parseFloat(
-            document.getElementById("precio-vehiculo-con-entrada").value
-        );
+
+
+   
+
+    //SUVS
+    document.getElementById("con-entrada-suvs").addEventListener("click", () => {
+
+        document.getElementById("precio-vehiculo-con-entrada-suvs").value = avaluoActual;
+        const precioVehiculo = parseFloat(document.getElementById("precio-vehiculo-con-entrada-suvs").value);
         console.log(avaluoActual);
-        // Agregar listeners para los cambios en los selects de porcentaje y meses-plazo
-        document
-            .getElementById("porcentaje")
-            .addEventListener("change", actualizarCalculos);
-        document
-            .getElementById("meses-plazo")
-            .addEventListener("change", actualizarCalculos);
+    
+        document.getElementById("porcentaje-suvs").addEventListener("change", () => {
+            const porcentajeEntrada = parseFloat(document.getElementById("porcentaje-suvs").value);
+            const mesesPlazo = parseInt(document.getElementById("meses-plazo-suvs").value);
+            
+            // Llamada con los IDs correctos
+            actualizarCalculos(precioVehiculo, porcentajeEntrada, mesesPlazo, {
+                precioPorcentaje: "precio-porcentaje-suvs",
+                precioMeses: "precio-meses-suvs",
+                estimado: "estimado-suvs"
+            });
+        });
+    
+        document.getElementById("meses-plazo-suvs").addEventListener("change", () => {
+            const porcentajeEntrada = parseFloat(document.getElementById("porcentaje-suvs").value);
+            const mesesPlazo = parseInt(document.getElementById("meses-plazo-suvs").value);
+            
+            actualizarCalculos(precioVehiculo, porcentajeEntrada, mesesPlazo, {
+                precioPorcentaje: "precio-porcentaje-suvs",
+                precioMeses: "precio-meses-suvs",
+                estimado: "estimado-suvs"
+            });
+        });
 
-        // Función para actualizar los cálculos y mostrar los valores en los inputs correspondientes
-        function actualizarCalculos() {
-            // Obtener el valor del vehículo desde el input "precio-vehiculo-con-entrada"
-            const precioVehiculo = parseFloat(
-                document.getElementById("precio-vehiculo-con-entrada").value
-            );
 
-            // Verificar si el precio del vehículo es válido
-            if (isNaN(precioVehiculo) || precioVehiculo <= 0) {
-                console.log("El valor del vehículo no está definido o es inválido.");
-                return;
-            }
-
-            // Obtener el valor seleccionado para el porcentaje de entrada
-            const porcentajeEntrada = parseFloat(
-                document.getElementById("porcentaje").value
-            );
-
-            porcentajeGlobal = porcentajeEntrada;
-
-            // Obtener el valor seleccionado para los meses plazo
-            const mesesPlazo = parseInt(document.getElementById("meses-plazo").value);
-
-            mesesGlobal = mesesPlazo;
-
-            // Verificar si los valores de porcentaje y meses son válidos
-            if (isNaN(porcentajeEntrada) || isNaN(mesesPlazo)) {
-                console.log("Porcentaje o meses no seleccionados correctamente.");
-                return;
-            }
-
-            // Cálculo del valor de la entrada
-            const valorEntrada = (porcentajeEntrada / 100) * precioVehiculo;
-
-            // Definir tasas de interés según el plazo en meses
-            const interesesPorMeses = {
-                24: 5.5,
-                36: 5.84,
-                48: 4.38,
-                60: 3.5,
-                72: 2.92,
-            };
-
-            // Obtener la tasa de interés según los meses seleccionados
-            const tasaInteres = interesesPorMeses[mesesPlazo] / 100;
-
-            // Cálculo del monto financiado
-            const montoFinanciado = precioVehiculo - valorEntrada;
-
-            // Cálculo del valor total a pagar con interés
-            const valorTotalConInteres = montoFinanciado * (1 + tasaInteres);
-            tasaAdministrativaGlobal = valorTotalConInteres;
-
-            // Cálculo de las cuotas mensuales
-            const cuotasMensuales = valorTotalConInteres / mesesPlazo;
-
-            // Actualizar los campos de salida con los resultados calculados
-            document.getElementById("precio-porcentaje").value =
-                valorEntrada.toFixed(2);
-            document.getElementById("precio-meses").value =
-                valorTotalConInteres.toFixed(2);
-            document.getElementById("estimado").value = cuotasMensuales.toFixed(2);
-        }
-
-        // Ocultar otras opciones
-        document.getElementById("opciones-vehiculo").style.display = "none";
-        document.getElementById("opciones-con-entrada").style.display = "flex";
+      
+    
+        document.getElementById("opciones-vehiculo-suvs").style.display = "none";
+        document.getElementById("opciones-con-entrada-suvs").style.display = "flex";
     });
 
-    */
+    
+    
+    
+    
 
     function mostrarPopup() {
         document.getElementById("popup").style.display = "flex";
+
     }
 
     document.getElementById("sin-entrada").addEventListener("click", () => {
@@ -542,8 +515,22 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("precio-vehiculo-pop").value = avaluoActual;
     });
 
+
+    //ENTRADA AL POPUP DE AUTOS,SUVS,CAMIONETAS,CAMIONES
     document
         .getElementById("continuar-con-entrada")
+        .addEventListener("click", () => {
+            mostrarPopup();
+            document.getElementById("imagen-carro").src = imagenSeleccionada;
+            // Asignar el valor al campo de "precio-vehiculo-con-entrada"
+            document.getElementById("precio-vehiculo-pop").value = avaluoActual;
+            
+        });
+
+        //SUVS
+
+        document
+        .getElementById("continuar-con-entrada-suvs")
         .addEventListener("click", () => {
             mostrarPopup();
             document.getElementById("imagen-carro").src = imagenSeleccionada;
@@ -558,6 +545,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     closePopBtn.onclick = function () {
         document.getElementById("popup").style.display = "none";
+        
     };
 
     // Ocultar contenido inicial del popup y mostrar el PDF
@@ -599,6 +587,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     "El tiempo de meses no coincide con ninguno de los valores definidos"
                 );
         }
+
+        document.getElementById("cuota-F").value = estimadoGlobal;
+       
+
 
         document.getElementById("boton-cotizar").style.display = "none";
     });

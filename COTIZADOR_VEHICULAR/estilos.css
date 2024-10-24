@@ -142,13 +142,16 @@ button:hover {
     justify-content: space-between;
 }
 
-#opciones-con-entrada{
+.opciones-con-entrada{
     display: flex;
     flex-direction: column;
     gap: 10px;
     justify-content: space-between;
    
 }
+
+
+
 
 
 

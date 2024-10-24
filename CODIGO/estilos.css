@@ -1,0 +1,193 @@
+  
+  
+
+  .avaluoSinEntrada{
+    color: #000; /* DE EL POP-UP SIN ENTRADA*/
+  }
+  /* Ocultar todas las secciones por defecto */
+  .vehicular-seccion,
+  .autos-seccion,
+  .suvs-seccion,
+  .camionetas-seccion,
+  .camiones-seccion {
+      display: none;
+  }
+
+  .menu {
+      margin-bottom: 20px;
+  }
+
+  .seccion {
+      padding: 20px;
+      border: 1px solid #000;
+      margin-top: 10px;
+  }
+
+  /* Estructura de dos columnas */
+  .contenedor {
+      display: flex;
+      justify-content: space-between;
+  }
+
+  /* Ajustes para que las imágenes del carrusel no distorsionen la sección */
+  .carrusel img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+  }
+
+  .formulario {
+      width: 45%;
+  }
+
+  .seccion img {
+      width: 100%;
+      height: auto;
+  }
+
+  /* Estilos adicionales para los botones y selects */
+  button,
+  select ,.btn-open-modal{
+      display: block;
+      margin: 10px 0;
+  }
+
+  .autos-seccion {
+      background-color: rgb(224, 164, 34);
+      color: white;
+  }
+
+  .suvs-seccion {
+      background-color: rgb(224, 164, 34);
+      color: black;
+  }
+
+  .camionetas-seccion {
+      background-color: rgb(224, 164, 34);
+      color: black;
+  }
+
+  .camiones-seccion {
+      background-color: rgb(224, 164, 34);
+      color: white;
+  }
+
+
+ /* Estilos para el modal */
+.modal {
+    display: flex; /* Flexbox para centrar el contenido */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo negro con opacidad */
+    justify-content: center;
+    align-items: center; /* Centrar vertical y horizontalmente */
+}
+
+.modal-content {
+    background-color: rgb(255, 255, 255);
+    padding: 20px; /* Ajustar el relleno */
+    border-radius: 20px;
+    width: 600px; /* Aumentar el ancho */
+    max-width: 90%; /* Responsivo */
+    position: relative;
+    /* Eliminar scroll asegurando que todo el contenido quede visible */
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Contenedor del formulario */
+.form-container {
+    padding: 15px;
+    
+}
+
+.form-header {
+    text-align: center;
+    font-size: 16px;
+    color: #f4a100;
+    margin-bottom: 20px;
+}
+
+.form-header span {
+    color: red;
+    font-weight: bold;
+}
+
+.car-image {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.car-image img {
+    width: 150px; /* Tamaño de imagen ajustado */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: none; /* Ocultar los labels */
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-column {
+    width: 48%;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #f4a100;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #d68e00;
+}
+.terminos{
+    color: black;
+}
+
+/* PARTE FINAL DE SIN ENTRADA */
+
+

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilos.css">
+    <title>COTIZADOR VEHICULAR</title>
+</head>
+
+<body>
+    <div class="contianer" id="container">
+        <!--seccion Inicial de AUTOS, SUVS, CAMIONETAS, CAMIONES-->
+        <section class="cotizador">
+            <h1 class="texto-vehicular">¿Qué tipo de <span class="highlight">vehículo</span> deseas?</h1>
+            <div class="vehicle-types">
+                <div class="vehicle">
+                    <!--IMAGENES DE BASE YA DIMENSIONADAS, SERIA DE VER IMAGENES PROPIAS DE ESTA SECCION-->
+                    <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en"
+                        alt="Autos">
+                    <p>Autos</p>
+                </div>
+
+                <div class="vehicle">
+                    <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en"
+                        alt="SUVs">
+                    <p>SUVs</p>
+                </div>
+
+                <div class="vehicle">
+                    <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en"
+                        alt="Camionetas">
+                    <p>Camionetas</p>
+                </div>
+
+                <div class="vehicle">
+                    <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en"
+                        alt="Camiones">
+                    <p>Camiones</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!--SECCIONES INDEPENDIENTES-->
+
+        <!--AUTOS-->
+
+        <!-- Sección oculta que aparecerá al seleccionar Autos -->
+        <section class="detalle-vehiculo" id="detalle-vehiculo-autos" style="display: none;">
+            <div class="vehiculo-container">
+                <!-- Columna izquierda: Imagen del vehículo -->
+                <div class="vehiculo-imagen">
+                    <img id="auto-imagen" src="https://via.placeholder.com/200" alt="Imagen del auto seleccionado" />
+                </div>
+
+                <!-- Columna derecha: Selectores de marca y modelo -->
+                <div class="vehiculo-selectores-container">
+                    <!-- Selectores de marca y modelo -->
+                    <div class="vehiculo-selectores" id="selectores">
+                        <label for="marca">Marca:</label>
+                        <select id="marca">
+                            <option value="">Selecciona una marca</option>
+                            <option value="toyota">Toyota</option>
+                            <option value="honda">Honda</option>
+                            <option value="chevrolet">Chevrolet</option>
+                        </select>
+
+                        <label for="modelo">Modelo:</label>
+                        <select id="modelo" disabled>
+                            <option value="">Selecciona un modelo</option>
+                        </select>
+
+                        <!-- Botón de Continuar -->
+                        <button id="continuar" style="display: none;">Continuar</button>
+                    </div>
+
+                    <!-- Nueva Sección con los botones "Con Entrada" y "Sin Entrada" (inicialmente oculta) -->
+                    <div class="opciones-botones" id="opciones-vehiculo" style="display: none;">
+                        <button id="con-entrada">Con Entrada</button>
+                        <button id="sin-entrada">Sin Entrada</button>
+                        <input class="precio-vehiculo" type="text" id="precio" disabled value="">
+                    </div>
+
+
+                    <!-- SECCION DE CON ENTRADA PORCENTAJE Y MESES PLAZO-->
+                    <div class="opciones-con-entrada" id="opciones-con-entrada" style="display: none;" >
+                        <select id="porcentaje" name="porcentaje" placeholder="porcentaje">
+                            <option value="">Seleccione un porcentaje de entrada</option>
+                            <option value="10">10%</option>
+                            <option value="20">20%</option>
+                            <option value="30">30%</option>
+                            <option value="40">40%</option>
+                            <option value="50">50%</option>
+                            <option value="60">60%</option>
+                          
+                        </select>
+                        <select id="meses-plazo" name="meses-plazo" placeholder="meses-plazo">
+                            <option value="">Seleccione la cantidad de meses.</option>
+                            <option value="12">12 meses</option>
+                            <option value="24">24 meses</option>
+                            <option value="36">36 meses</option>
+                            <option value="48">48 meses</option>
+                            <option value="72">72 meses</option>
+                            
+                     
+                        </select>
+                        <input class="precio-vehiculo-con-entrada" type="number" id="precio-vehiculo-con-entrada" disabled value="">
+                        <input  class="precio-porcentaje" type="text" id="precio-porcentaje" disabled value="">
+                        <input  class="precio-meses" type="text" id="precio-meses" disabled value="">
+                        <input  class="estimado" type="text" id="estimado" disabled value="">
+
+                        <!-- Botón de Continuar -->
+                        <button id="continuar-con-entrada">Continuar</button>
+
+
+
+
+                     </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <!-- POPUP-->
+        <!-- Popup -->
+        <div id="popup" class="popup" style="display: none;">
+            <div class="popup-contenido">
+                <span class="cerrar" id="cerrarPop">&times;</span>
+                <h2>Gracias por cotizar con nosotros</h2>
+
+                <div class="imagen-precio" id="imagen-precio">
+                    <img id="imagen-carro" src="" alt="Imagen del carro" class="imagen-carro">
+                <input class="precio-vehiculo-pop" type="text" id="precio-vehiculo-pop" disabled value="">
+
+                </div>
+                
+                <div class="popup-formulario">
+                    <div class="columna izquierda">
+
+                        <label class="nombres-y-apellidos" style="display:none;">Nombres y Apellidos</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombres y Apellidos">
+
+                        <label class="correo-electronico" style="display:none;">Correo Electronico</label>
+                        <input type="email" id="correo" name="correo" placeholder="Correo Electronico">
+
+                        <label class="provincia" style="display:none;">Provincia</label>
+                        <select id="provincia" name="provincia" placeholder="provincia">
+                            <option value="">Seleccione una Provincia</option>
+                            <option value="Pichincha">Pichincha</option>
+                            <option value="Santo_Domingo">Santo Domingo</option>
+                            <option value="Esmeraldas">Esmeraldas</option>
+                            <option value="Manabi">Manabí</option>
+                            <option value="El_Oro">El Oro</option>
+                            <option value="Guayas">Guayas</option>
+                            <!-- Agrega más provincias -->
+                        </select>
+                        
+                        <label for="agencia"></label>
+                        <select id="agencia" disabled>
+                            <option value="">Selecciona la agencia mas cercana</option>
+                        </select>
+
+                        <label class="selecciona" for="primero-renovacion"  style="display:none;">Selecciona</label>
+                        <select id="primero-renovacion">
+                            <option value="primero">Mi Primer vehículo</option>
+                            <option value="renovacion">Renovar mi vehículo</option>
+
+                        </select>
+
+
+
+
+                    </div>
+                    <div class="columna derecha">
+                        <label for="cedula" style="display:none;">Cédula:</label>
+                        <input type="text" id="cedula" name="cedula" placeholder="Cedula de Identidad">
+
+                        <label for="telefono" style="display:none;">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono" placeholder="Telefono">
+
+                        <label for="ciudad" style="display:none;">Ciudad:</label>
+                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad de Residencia">
+                        
+                    </div>
+                </div>
+                <!-- Botón Cotizar al centro -->
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="boton-cotizar" id="boton-cotizar">COTIZAR</button>
+                </div>
+
+
+                <!-- PARTE FINAL DEL POP UP PARA LA DESCARGA-->
+                <div class="pdf" id="pdf" style="display:none;">
+
+                    <div class="form-container-pdf" id="form-container-pdf">
+
+                        
+                            <!-- Mensaje de agradecimiento con el nombre dinámico -->
+                            <h2 id="thankYouMessage">Gracias por Cotizar !!</h2>
+
+                            <!-- Imagen del auto seleccionado -->
+                            <div class="car-image">
+                                <img id="auto-sin-entrada-pdf" src="" alt="Auto Seleccionado">
+                            </div>
+
+
+                            <div class="form-row" id="formfinal">
+                                <p class="title">Monto Planificado:</p>
+                                <input class="precio-vehiculo-pdf" type="text" id="precio-vehiculo-pdf" disabled value="">
+                                <p class="title">Tiempo de Planificación:</p>
+                                <input class="meses-F" id="meses-F" ></input>
+                                <p class="title">Porcentaje de Entrada:</p>
+                                <input class="porcentaje-F" id="porcentaje-F" ></input>
+                                <p class="title">Tasa Administrativa:</p>
+                                <input class="tasa-F" id="tasa-F" ></input>
+                                <p class="title">Cuota Fija:</p>
+                                <input class="value"></input>
+                                <p class="title">Valor de la Inscripción:</p>
+                                <input class="value"></input>
+                            </div>
+                      
+
+                        <!-- Información del plan ESTE SIN ENTRADA Y ESTARA COMENTADO DE MOMENTO 
+                        <div class="form-row" id="formfinal">
+                            <p class="title">Monto Planificado:</p>
+                            <select id="monto" name="monto">
+                                <option value="25.000">25.000</option>
+                                <option value="30.000">30.000</option>
+                                <option value="40.000">40.000</option>
+                                <option value="50.000">50.000</option>
+                                <option value="60.000">60.000</option>
+                            </select>
+                            <p class="title">Tiempo de Planificación:</p>
+                            <input class="value" placeholder="12 meses"></input>
+                            <p class="title">Porcentaje de Entrada:</p>
+                            <input class="value"></input>
+                            <p class="title">Tasa Administrativa:</p>
+                            <p class="value">2.9%</p>
+                            <p class="title">Cuota Fija:</p>
+                            <input class="value"></input>
+                            <p class="title">Valor de la Inscripción:</p>
+                            <input class="value"></input>
+                        </div>
+                        -->
+
+                        <button class="btn-quote">DESCARGAR COTIZACIÓN</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!--SUVS  ....................
+        .............................
+        ..............................-->
+        <section class="detalle-vehiculo-suvs" id="detalle-vehiculo-suvs" style="display: none;">
+            <div class="vehiculo-container">
+                <!-- Columna izquierda: Imagen del vehículo -->
+                <div class="vehiculo-imagen">
+                    <img id="suv-imagen" src="https://via.placeholder.com/200" alt="Imagen del auto seleccionado" />
+                </div>
+
+                <!-- Columna derecha: Selectores de marca y modelo -->
+                <div class="vehiculo-selectores-container">
+                    <!-- Selectores de marca y modelo -->
+                    <div class="vehiculo-selectores" id="selectores-suvs">
+                        <label for="marca-suvs">Marca:</label>
+                        <select id="marca-suvs">
+                            <option value="">Selecciona una marca</option>
+                            <option value="chevrolet">Chevrolet</option>
+                            <option value="sinnombre">Sin Nombre</option>
+                        </select>
+
+                        <label for="modelo-suvs">Modelo:</label>
+                        <select id="modelo-suvs" disabled>
+                            <option value="">Selecciona un modelo</option>
+                        </select>
+
+                        <!-- Botón de Continuar -->
+                        <button id="continuarSuvs" style="display: none;">Continuar</button>
+                    </div>
+
+                    <!-- Nueva Sección con los botones "Con Entrada" y "Sin Entrada" (inicialmente oculta) -->
+                    <div class="opciones-botones" id="opciones-vehiculo-suvs" style="display: none;">
+                        <button id="con-entrada-suvs">Con Entrada</button>
+                        <button id="sin-entrada-suvs">Sin Entrada</button>
+                        <input class="precio-vehiculo" type="text" id="precio-suvs" disabled value="">
+                    </div>
+
+
+                    <!-- SECCION DE CON ENTRADA PORCENTAJE Y MESES PLAZO-->
+                    <div class="opciones-con-entrada" id="opciones-con-entrada" style="display: none;" >
+                        <select id="porcentaje" name="porcentaje" placeholder="porcentaje">
+                            <option value="">Seleccione un porcentaje de entrada</option>
+                            <option value="10">10%</option>
+                            <option value="20">20%</option>
+                            <option value="30">30%</option>
+                            <option value="40">40%</option>
+                            <option value="50">50%</option>
+                            <option value="60">60%</option>
+                          
+                        </select>
+                        <select id="meses-plazo" name="meses-plazo" placeholder="meses-plazo">
+                            <option value="">Seleccione la cantidad de meses.</option>
+                            <option value="12">12 meses</option>
+                            <option value="24">24 meses</option>
+                            <option value="36">36 meses</option>
+                            <option value="48">48 meses</option>
+                            <option value="72">72 meses</option>
+                            
+                     
+                        </select>
+                        <input class="precio-vehiculo-con-entrada" type="number" id="precio-vehiculo-con-entrada" disabled value="">
+                        <input  class="precio-porcentaje" type="text" id="precio-porcentaje" disabled value="">
+                        <input  class="precio-meses" type="text" id="precio-meses" disabled value="">
+                        <input  class="estimado" type="text" id="estimado" disabled value="">
+
+                        <!-- Botón de Continuar -->
+                        <button id="continuar-con-entrada">Continuar</button>
+
+
+
+
+                     </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!--CAMIONETAS
+         ...........................
+         ...........................-->
+         <section class="detalle-vehiculo-camionetas" id="detalle-vehiculo-camionetas" style="display: none;">
+            <div class="vehiculo-container">
+                <!-- Columna izquierda: Imagen del vehículo -->
+                <div class="vehiculo-imagen">
+                    <img id="auto-imagen" src="https://via.placeholder.com/200" alt="Imagen del auto seleccionado" />
+                </div>
+
+                <!-- Columna derecha: Selectores de marca y modelo -->
+                <div class="vehiculo-selectores-container">
+                    <!-- Selectores de marca y modelo -->
+                    <div class="vehiculo-selectores" id="selectores">
+                        <label for="marca">Marca:</label>
+                        <select id="marca">
+                            <option value="">Selecciona una marca</option>
+                            <option value="toyota">Toyota</option>
+                            <option value="honda">Honda</option>
+                        </select>
+
+                        <label for="modelo">Modelo:</label>
+                        <select id="modelo" disabled>
+                            <option value="">Selecciona un modelo</option>
+                        </select>
+
+                        <!-- Botón de Continuar -->
+                        <button id="continuar" style="display: none;">Continuar</button>
+                    </div>
+
+                    <!-- Nueva Sección con los botones "Con Entrada" y "Sin Entrada" (inicialmente oculta) -->
+                    <div class="opciones-botones" id="opciones-vehiculo" style="display: none;">
+                        <button id="con-entrada">Con Entrada</button>
+                        <button id="sin-entrada">Sin Entrada</button>
+                        <input class="precio-vehiculo" type="text" id="precio" disabled value="">
+                    </div>
+
+
+                    <!-- SECCION DE CON ENTRADA PORCENTAJE Y MESES PLAZO-->
+                    <div class="opciones-con-entrada" id="opciones-con-entrada" style="display: none;" >
+                        <select id="porcentaje" name="porcentaje" placeholder="porcentaje">
+                            <option value="">Seleccione un porcentaje de entrada</option>
+                            <option value="10">10%</option>
+                            <option value="20">20%</option>
+                            <option value="30">30%</option>
+                            <option value="40">40%</option>
+                            <option value="50">50%</option>
+                            <option value="60">60%</option>
+                          
+                        </select>
+                        <select id="meses-plazo" name="meses-plazo" placeholder="meses-plazo">
+                            <option value="">Seleccione la cantidad de meses.</option>
+                            <option value="12">12 meses</option>
+                            <option value="24">24 meses</option>
+                            <option value="36">36 meses</option>
+                            <option value="48">48 meses</option>
+                            <option value="72">72 meses</option>
+                            
+                     
+                        </select>
+                        <input class="precio-vehiculo-con-entrada" type="number" id="precio-vehiculo-con-entrada" disabled value="">
+                        <input  class="precio-porcentaje" type="text" id="precio-porcentaje" disabled value="">
+                        <input  class="precio-meses" type="text" id="precio-meses" disabled value="">
+                        <input  class="estimado" type="text" id="estimado" disabled value="">
+
+                        <!-- Botón de Continuar -->
+                        <button id="continuar-con-entrada">Continuar</button>
+
+
+
+
+                     </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!--CAMIONES .........................................
+        ............................................................
+        ...............................
+        -->
+        <section class="detalle-vehiculo-camiones" id="detalle-vehiculo-camiones" style="display: none;">
+            <div class="vehiculo-container">
+                <!-- Columna izquierda: Imagen del vehículo -->
+                <div class="vehiculo-imagen">
+                    <img id="auto-imagen" src="https://via.placeholder.com/200" alt="Imagen del auto seleccionado" />
+                </div>
+
+                <!-- Columna derecha: Selectores de marca y modelo -->
+                <div class="vehiculo-selectores-container">
+                    <!-- Selectores de marca y modelo -->
+                    <div class="vehiculo-selectores" id="selectores">
+                        <label for="marca">Marca:</label>
+                        <select id="marca">
+                            <option value="">Selecciona una marca</option>
+                            <option value="toyota">Toyota</option>
+                            <option value="honda">Honda</option>
+                        </select>
+
+                        <label for="modelo">Modelo:</label>
+                        <select id="modelo" disabled>
+                            <option value="">Selecciona un modelo</option>
+                        </select>
+
+                        <!-- Botón de Continuar -->
+                        <button id="continuar" style="display: none;">Continuar</button>
+                    </div>
+
+                    <!-- Nueva Sección con los botones "Con Entrada" y "Sin Entrada" (inicialmente oculta) -->
+                    <div class="opciones-botones" id="opciones-vehiculo" style="display: none;">
+                        <button id="con-entrada">Con Entrada</button>
+                        <button id="sin-entrada">Sin Entrada</button>
+                        <input class="precio-vehiculo" type="text" id="precio" disabled value="">
+                    </div>
+
+
+                    <!-- SECCION DE CON ENTRADA PORCENTAJE Y MESES PLAZO-->
+                    <div class="opciones-con-entrada" id="opciones-con-entrada" style="display: none;" >
+                        <select id="porcentaje" name="porcentaje" placeholder="porcentaje">
+                            <option value="">Seleccione un porcentaje de entrada</option>
+                            <option value="10">10%</option>
+                            <option value="20">20%</option>
+                            <option value="30">30%</option>
+                            <option value="40">40%</option>
+                            <option value="50">50%</option>
+                            <option value="60">60%</option>
+                          
+                        </select>
+                        <select id="meses-plazo" name="meses-plazo" placeholder="meses-plazo">
+                            <option value="">Seleccione la cantidad de meses.</option>
+                            <option value="12">12 meses</option>
+                            <option value="24">24 meses</option>
+                            <option value="36">36 meses</option>
+                            <option value="48">48 meses</option>
+                            <option value="72">72 meses</option>
+                            
+                     
+                        </select>
+                        <input class="precio-vehiculo-con-entrada" type="number" id="precio-vehiculo-con-entrada" disabled value="">
+                        <input  class="precio-porcentaje" type="text" id="precio-porcentaje" disabled value="">
+                        <input  class="precio-meses" type="text" id="precio-meses" disabled value="">
+                        <input  class="estimado" type="text" id="estimado" disabled value="">
+
+                        <!-- Botón de Continuar -->
+                        <button id="continuar-con-entrada">Continuar</button>
+
+
+
+
+                     </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- BORRADOR  -->
+
+    </div>
+    <script src="logica.js"></script>
+</body>
+
+</html>

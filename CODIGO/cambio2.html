@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CODIGO/estilos.css">
+    <title>Plan Vehicular</title>
+
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="menu">
+        <!-- Botones de navegación para cada tipo de vehículo -->
+        <button id="autos">Autos</button>
+        <button id="suvs">SUVs</button>
+        <button id="camionetas">Camionetas</button>
+        <button id="camiones">Camiones</button>
+    </div>
+
+
+    <!-- Sección para Autos -->
+    <div class="seccion autos-seccion">
+        <div class="contenedor">
+            <div class="carrusel" id="carrusel-autos">
+                <img src="https://finanmotors.com/wp-content/uploads/2024/09/toyotacorolla.png" alt="Auto 1"
+                    data-modelo="Corolla" style="display: none;">
+                <img class="Camry" src="https://finanmotors.com/wp-content/uploads/2024/10/toyota-camry-1.png"
+                    alt="Auto 2" data-modelo="Camry" style="display: none; width: 520px; height: 280px;">
+
+                <img src="https://finanmotors.com/wp-content/uploads/2024/09/hondacivic.png" alt="Auto 3"
+                    data-modelo="Civic" style="display: none; width: 520px; height: 280px;">
+                <img src="https://finanmotors.com/wp-content/uploads/2024/10/honda-accord.png" alt="Auto 4"
+                    data-modelo="Accord" style="display: none; width: 520px; height: 280px;">
+
+            </div>
+            <div class="formulario">
+                <label for="marca-autos">Marca:</label>
+                <select id="marca-autos">
+                    <option value="">Seleccione una marca</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Honda">Honda</option>
+                </select>
+
+                <label for="modelo-autos">Modelo:</label>
+                <select id="modelo-autos">
+                    <option value="">Seleccione un modelo</option>
+                    <option data-marca="Toyota" value="Corolla">Corolla</option>
+                    <option data-marca="Toyota" value="Camry">Camry</option>
+                    <option data-marca="Honda" value="Civic">Civic</option>
+                    <option data-marca="Honda" value="Accord">Accord</option>
+                </select>
+
+                <button id="continuar-autos" style="display:none;">Continuar</button>
+
+                <!-- Nueva sección para botones de "Con Entrada" y "Sin Entrada" -->
+                <div id="opciones-autos" style="display:none;">
+                    <button id="con-entrada">Con Entrada</button>
+                    <button class="btn-open-modal" id="openModal">Sin Entrada</button>
+                    <label>Avaluo: <span id="avaluo-autos"></span></label>
+                    <button id="atras-autos" style="display:none;">Atrás</button>
+
+                </div>
+
+                <!-- Selectores de porcentaje y plazo -->
+                <div id="entrada-opciones" style="display: none;">
+                    <label for="porcentaje">Porcentaje de Entrada:</label>
+                    <select id="porcentaje">
+                        <option value="">Seleccione el porcentaje</option>
+                        <option value="10">10%</option>
+                        <option value="20">20%</option>
+                        <option value="30">30%</option>
+                        <option value="40">40%</option>
+                        <option value="50">50%</option>
+                        <option value="60">60%</option>
+                    </select>
+
+                    <label for="plazo">Plazo (meses):</label>
+                    <select id="plazo">
+                        <option value="">Seleccione el plazo</option>
+                        <option value="12">12 meses</option>
+                        <option value="24">24 meses</option>
+                        <option value="36">36 meses</option>
+                        <option value="72">72 meses</option>
+                    </select>
+                    <button id="atras-entrada" style="display:none;">Atrás</button>
+                </div>
+
+
+
+                <!-- Seccion de SIN ENTRADA -->
+                <!-- Modal -->
+                <div id="myModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <span class="close-btn" id="closeModal">&times;</span>
+
+                        <div class="form-container" id="form-container">
+                            <div class="form-header">
+                                <p>Estás a un paso de planificar tu <span>(marca y modelo del auto seleccionado)</span>
+                                </p>
+                            </div>
+                            <div class="car-image">
+                                <img id="auto-sin-entrada" src=" " alt="Auto Seleccionado">
+                                <p>Es un referencia</p>
+                                <label class="avaluoSinEntrada">Avaluo: <span id="avaluo-modal"></span></label>
+                            </div>
+
+                            <div class="form-row">
+                                <!-- Left Column -->
+                                <div class="form-column">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombres y Apellidos</label>
+                                        <input type="text" id="nombre" name="nombre" value=""
+                                            placeholder="Nombres y Apellidos" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Correo Electrónico</label>
+                                        <input type="email" id="email" name="email" value=""
+                                            placeholder="Correo Electronico" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="provincia">Provincia</label>
+                                        <select id="provincia" name="provincia">
+                                            <option>Pichincha</option>
+                                            <option>Guayas</option>
+                                            <option>Azuay</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="agencia">Elige la agencia más cercana</label>
+                                        <select id="agencia" name="agencia">
+                                            <option>Quito Matriz - Mena Dos</option>
+                                            <option>Guayaquil - Centro</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Right Column -->
+                                <div class="form-column">
+                                    <div class="form-group">
+                                        <label for="cedula">Cédula de Identidad</label>
+                                        <input type="text" id="cedula" name="cedula" placeholder="Cedula" value=""
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="telefono">Teléfono</label>
+                                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" value=""
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ciudad">Ciudad</label>
+                                        <input type="text" id="ciudad" name="ciudad" value="Quito" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="seleccion">Selecciona</label>
+                                <select id="seleccion" name="seleccion">
+                                    <option>Mi primer vehículo</option>
+                                    <option>Renovar mi vehículo</option>
+                                </select>
+                            </div>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terminos" name="terminos" required>
+                                <label class="terminos" for="terminos">Acepto Términos y condiciones</label>
+                            </div>
+
+                            <button class="btn-submit" id="btn-submit">COTIZAR</button>
+                        </div>
+
+                        <!-- Seccion FINAL DE SIN ENTRADA, COTIZAR INDIVIDUAL... -->
+                        <!-- sssssssssssssssssssssssssssssssssssssssssssssssssss -->
+                        <div id="pdf" style="display:none;">
+                            <span class="close-btn" id="closeModal">&times;</span>
+
+                            <div class="form-container-pdf" id="form-container-pdf">
+                                <div class="form-header">
+                                    <p>PASO FINAL DE TU AUTO... <span>(marca y modelo del auto seleccionado)</span>
+                                    </p>
+                                </div>
+                                <div class="car-image">
+                                    <img id="auto-sin-entrada-pdf" src=" " alt="Auto Seleccionado">
+                                    <p style="color: black;">FINAL DEL AUTO</p>
+                                    <label class="avaluoSinEntrada">Avaluo: <span id="avaluo-modal-pdf"></span></label>
+                                </div>
+
+                                <div class="form-row" id="formfinal">
+                                    <p>Monto Planificado</p>
+                                    <p>Tiempo de Planificacion</p>
+                                    <p>Porcentaje de Entrada</p>
+                                    <p>Tasa Administrativa</p>
+                                    <p>Cuota Fija</p>
+                                    <p>Valor de Inscripcion</p>
+
+
+
+                                </div>
+
+
+                                <button class="btn-submit-pdf">FINAL</button>
+                            </div>
+
+                        </div>
+
+                        <!--   FIN DE LA SECCON DE SIN ENTRADA DEL  PDF-->
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección para SUVs -->
+    <div class="seccion suvs-seccion">
+        <div class="contenedor">
+
+        </div>
+    </div>
+
+    <!-- Sección para Camionetas -->
+    <div class="seccion camionetas-seccion">
+        <div class="contenedor">
+
+        </div>
+    </div>
+
+    <!-- Sección para Camiones -->
+    <div class="seccion camiones-seccion">
+        <div class="contenedor">
+
+        </div>
+    </div>
+
+    <script>
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+
+
+            //-----------------------
+            // Avaluo para cada modelo de auto
+            const avaluos = {
+                "Corolla": "$20,000",
+                "Camry": "$30,000",
+                "Civic": "$18,000",
+                "Accord": "$25,000"
+            };
+
+
+            //-----------------------
+            // Escuchar clic en los botones de tipos de vehículos
+            document.getElementById('autos').addEventListener('click', function () {
+                hideAllSections();
+                document.querySelector('.autos-seccion').style.display = 'block';
+            });
+
+            document.getElementById('suvs').addEventListener('click', function () {
+                hideAllSections();
+                document.querySelector('.suvs-seccion').style.display = 'block';
+            });
+
+            document.getElementById('camionetas').addEventListener('click', function () {
+                hideAllSections();
+                document.querySelector('.camionetas-seccion').style.display = 'block';
+            });
+
+            document.getElementById('camiones').addEventListener('click', function () {
+                hideAllSections();
+                document.querySelector('.camiones-seccion').style.display = 'block';
+            });
+
+            // Función para ocultar todas las secciones de vehículos
+            function hideAllSections() {
+                document.querySelector('.autos-seccion').style.display = 'none';
+                document.querySelector('.suvs-seccion').style.display = 'none';
+                document.querySelector('.camionetas-seccion').style.display = 'none';
+                document.querySelector('.camiones-seccion').style.display = 'none';
+            }
+
+
+            //-----------------------
+            let avaluoActual = '';
+            let imagenSeleccionada = '';
+
+            // Función para manejar la lógica de selección y mostrar la imagen
+            function handleSelectionChange(marcaSelectId, modeloSelectId, continuarBtnId, carruselId, opcionesId, avaluoLabelId, entradaOpId, opcionesEntradaId) {
+                const marcaSelect = document.getElementById(marcaSelectId);
+                const modeloSelect = document.getElementById(modeloSelectId);
+                const continuarBtn = document.getElementById(continuarBtnId);
+                const carrusel = document.getElementById(carruselId);
+                const opciones = document.getElementById(opcionesId);
+                const avaluoLabel = document.getElementById(avaluoLabelId);
+                const entradaOp = document.getElementById(entradaOpId);
+                const opcionesEntrada = document.getElementById(opcionesEntradaId);
+                const images = carrusel.querySelectorAll('img');
+
+                marcaSelect.addEventListener("change", function () {
+                    const selectedMarca = marcaSelect.value;
+
+                    Array.from(modeloSelect.options).forEach((option) => {
+                        if (option.dataset.marca === selectedMarca || option.value === "") {
+                            option.style.display = "block";
+
+                        } else {
+                            option.style.display = "none";
+                        }
+                    });
+
+                    // Reiniciar el modelo seleccionado y ocultar botón continuar
+                    modeloSelect.value = "";
+                    toggleContinueButton();
+                });
+
+
+
+                continuarBtn.addEventListener('click', function () {
+                    // Ocultar los selectores y el botón "Continuar"
+                    marcaSelect.style.display = 'none';
+                    modeloSelect.style.display = 'none';
+                    continuarBtn.style.display = 'none';
+
+                    // Mostrar opciones, el valor del avalúo y el botón "Atrás"
+                    opciones.style.display = 'block';
+
+                    // Asignar el avalúo actual a la variable global
+                    avaluoActual = avaluos[modeloSelect.value];
+                    avaluoLabel.textContent = avaluoActual;
+
+                    document.getElementById('atras-autos').style.display = 'block'; // Mostrar el botón "Atrás"
+                });
+
+
+                //------------------
+                modeloSelect.addEventListener('change', function () {
+                    const selectedModelo = modeloSelect.value;
+
+                    images.forEach(img => {
+                        if (img.dataset.modelo === selectedModelo) {
+                            img.style.display = 'block';
+                            imagenSeleccionada = img.src;  // Guardar la imagen seleccionada en la variable global
+                        } else {
+                            img.style.display = 'none';
+                        }
+                    });
+
+                    toggleContinueButton();
+                });
+
+
+                //--------------
+
+
+                document.getElementById('atras-autos').addEventListener('click', function () {
+                    // Mostrar los selectores de marca y modelo y ocultar el botón "Atrás"
+                    marcaSelect.style.display = 'block';
+                    modeloSelect.style.display = 'block';
+                    continuarBtn.style.display = 'block';
+
+                    // Ocultar las opciones y el botón "Atrás"
+                    opciones.style.display = 'none';
+                    document.getElementById('atras-autos').style.display = 'none';
+                });
+
+                //-----------------------CON ENTRADA OPCIONES DE % Y PLAZOS ATRAS
+
+                document.getElementById('atras-entrada').addEventListener('click', function () {
+                    // Mostrar los selectores de marca y modelo y ocultar el botón "Atrás"
+                    opciones.style.display = 'block';
+
+                    // Ocultar las opciones y el botón "Atrás"
+                    opcionesEntrada.style.display = 'none';
+                    document.getElementById('atras-entrada').style.display = 'none';
+                });
+
+
+                entradaOp.addEventListener('click', function () {
+                    // Ocultar las opciones de ENTRAD y SIn Entrada
+                    opciones.style.display = 'none';
+
+                    opcionesEntrada.style.display = "block";
+
+
+                    document.getElementById('atras-entrada').style.display = 'block';
+
+
+                });
+
+                //-------------------------SIN ENTRADAAAAAA
+
+                document.getElementById("openModal").addEventListener('click', function () {
+                    modal.style.display = "flex";
+
+                    document.getElementById('auto-sin-entrada').src = imagenSeleccionada;
+
+
+
+                    document.getElementById('avaluo-modal').textContent = avaluoActual;
+
+
+                });
+
+
+
+
+
+
+                modeloSelect.addEventListener('change', function () {
+                    const selectedModelo = modeloSelect.value;
+
+                    // Mostrar la imagen correspondiente al modelo seleccionado
+                    images.forEach(img => {
+                        img.style.display = (img.dataset.modelo === selectedModelo) ? 'block' : 'none';
+                    });
+
+                    toggleContinueButton();
+                });
+
+                function toggleContinueButton() {
+                    if (marcaSelect.value !== "" && modeloSelect.value !== "") {
+                        continuarBtn.style.display = 'block';
+                    } else {
+                        continuarBtn.style.display = 'none';
+                    }
+                }
+            }
+
+            // Aplicar la función para cada sección
+            handleSelectionChange('marca-autos', 'modelo-autos', 'continuar-autos', 'carrusel-autos', 'opciones-autos', 'avaluo-autos', 'con-entrada', 'entrada-opciones');
+            handleSelectionChange('marca-suvs', 'modelo-suvs', 'continuar-suvs', 'carrusel-suvs');
+            handleSelectionChange('marca-camionetas', 'modelo-camionetas', 'continuar-camionetas', 'carrusel-camionetas');
+            handleSelectionChange('marca-camiones', 'modelo-camiones', 'continuar-camiones', 'carrusel-camiones');
+
+
+
+
+        });
+
+
+        //-----------------------------
+        //------------------
+        // Get modal element
+        var modal = document.getElementById("myModal");
+
+        // Get button to open the modal
+        var openModalBtn = document.getElementById("openModal");
+
+        // Get button to close the modal
+        var closeModalBtn = document.getElementById("closeModal");
+
+        // Open modal when "Sin entrada" button is clicked
+        openModalBtn.onclick = function () {
+            modal.style.display = "flex";
+
+            avaluoActual = document.getElementById("avaluo-sin-entrada");
+
+
+
+        }
+
+        // Close modal when "x" button is clicked
+        closeModalBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // Close modal if user clicks outside the modal content
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+
+        //------------------
+        //-------------------------------
+        document.getElementById('btn-submit').addEventListener('click', function () {
+            
+            document.getElementById('pdf').style.display = 'block';
+
+
+            document.getElementById('formfinal').style.display = 'block';
+
+            
+
+
+            document.getElementById('form-container').style.display = 'none';
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

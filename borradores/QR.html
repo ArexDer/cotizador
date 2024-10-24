@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Código QR</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.15.349/pdf.min.js"></script>
+</head>
+<body>
+    <input type="file" id="archivo" accept=".pdf" onchange="leerArchivo(event)">
+    <button onclick="descargarQR()">Descargar QR como PNG</button>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <div id="mensaje"></div>
+
+    <script>
+        async function leerArchivo(event) {
+            const archivo = event.target.files[0];
+            if (archivo) {
+                const contenido = await extraerTextoPDF(archivo);
+                generarQR(contenido);
+            }
+        }
+
+        async function extraerTextoPDF(archivo) {
+            const pdfData = await archivo.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+            let textoCompleto = '';
+
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const pagina = await pdf.getPage(i);
+                const contenido = await pagina.getTextContent();
+                contenido.items.forEach(item => {
+                    textoCompleto += item.str + ' ';
+                });
+            }
+
+            return textoCompleto.trim(); // Devuelve el texto completo extraído
+        }
+
+        function generarQR(direccion) {
+            var qr = new QRious({
+                element: document.getElementById("canvas"),
+                value: direccion,
+                size: 200 // Tamaño del código QR
+            });
+            document.getElementById("mensaje").innerText = "Código QR generado con el contenido del archivo.";
+        }
+
+        function descargarQR() {
+            var canvas = document.getElementById("canvas");
+            if (canvas.toDataURL("LogoFinan.jpeg").length > 0) { // Verifica que el QR se haya generado
+                var link = document.createElement("a");
+                link.download = "codigo_qr.png"; // Nombre del archivo
+                link.href = canvas.toDataURL("LogoFinan.jpeg"); // Obtiene la imagen del canvas
+                link.click(); // Simula el clic para descargar
+            } else {
+                alert("Primero genera un código QR.");
+            }
+        }
+    </script>
+</body>
+</html>

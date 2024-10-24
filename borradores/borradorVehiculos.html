@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Vehicular</title>
+    <style>
+        /* Ocultar todas las secciones por defecto */
+        .vehicular-seccion,
+        .autos-seccion,
+        .suvs-seccion,
+        .camionetas-seccion,
+        .camiones-seccion {
+            display: none;
+        }
+
+        .menu {
+            margin-bottom: 20px;
+        }
+
+        .seccion {
+            padding: 20px;
+            border: 1px solid #000;
+            margin-top: 10px;
+        }
+
+        /* Estructura de dos columnas */
+        .contenedor {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Ajustes para que las imágenes del carrusel no distorsionen la sección */
+        .carrusel img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .formulario {
+            width: 45%;
+        }
+
+        .seccion img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Estilos adicionales para los botones y selects */
+        button, select {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .autos-seccion {
+            background-color: rgb(224, 168, 46);
+            color: white;
+        }
+
+        .suvs-seccion {
+            background-color: yellow;
+            color: black;
+        }
+
+        .camionetas-seccion {
+            background-color: lightblue;
+            color: black;
+        }
+
+        .camiones-seccion {
+            background-color: gray;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        <button id="autos">Autos</button>
+    </div>
+
+    <!-- Sección para Autos -->
+    <div class="seccion autos-seccion">
+        <div class="contenedor">
+            <div class="carrusel" id="carrusel-autos">
+                <img src="https://finanmotors.com/wp-content/uploads/2024/09/toyotacorolla.png" alt="Auto 1" data-modelo="Corolla" style="display: none;">
+                <img class="Camry" src="https://finanmotors.com/wp-content/uploads/2024/10/toyota-camry-1.png" alt="Auto 2" data-modelo="Camry" style="display: none; width: 520px; height: 280px;">
+                <img src="https://finanmotors.com/wp-content/uploads/2024/09/hondacivic.png" alt="Auto 3" data-modelo="Civic"
+                style="display: none; width: 520px; height: 280px;">
+            </div>
+            <div class="formulario">
+                <label for="marca-autos">Marca:</label>
+                <select id="marca-autos">
+                    <option value="">Seleccione una marca</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Honda">Honda</option>
+                </select>
+
+                <label for="modelo-autos">Modelo:</label>
+                <select id="modelo-autos">
+                    <option value="">Seleccione un modelo</option>
+                    <option data-marca="Toyota" value="Corolla">Corolla</option>
+                    <option data-marca="Toyota" value="Camry">Camry</option>
+                    <option data-marca="Honda" value="Civic">Civic</option>
+                    <option data-marca="Honda" value="Accord">Accord</option>
+                </select>
+
+                <button id="continuar-autos" style="display:none;">Continuar</button>
+                
+                <!-- Nueva sección para botones de "Con Entrada" y "Sin Entrada" -->
+            <div id="opciones-autos" style="display:none;">
+                <button>Con Entrada</button>
+                <button>Sin Entrada</button>
+                <label>Avaluo: <span id="avaluo-autos"></span></label>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección para SUVs -->
+    <div class="seccion suvs-seccion">
+        <div class="contenedor">
+            <div class="carrusel" id="carrusel-suvs">
+                <img src="https://finanmotors.com/wp-content/uploads/2024/09/toyota-rav4.png" alt="SUV 1" data-modelo="RAV4" style="display: none;">
+                <img src="https://finanmotors.com/wp-content/uploads/2024/10/toyota-highlander.png" alt="SUV 2" data-modelo="Highlander" style="display: none;">
+            </div>
+            <div class="formulario">
+                <label for="marca-suvs">Marca:</label>
+                <select id="marca-suvs">
+                    <option value="">Seleccione una marca</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Nissan">Nissan</option>
+                </select>
+
+                <label for="modelo-suvs">Modelo:</label>
+                <select id="modelo-suvs">
+                    <option value="">Seleccione un modelo</option>
+                    <option data-marca="Toyota" value="RAV4">RAV4</option>
+                    <option data-marca="Toyota" value="Highlander">Highlander</option>
+                    <option data-marca="Nissan" value="X-Trail">X-Trail</option>
+                    <option data-marca="Nissan" value="Murano">Murano</option>
+                </select>
+
+                <button id="continuar-suvs" style="display:none;">Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección para Camionetas -->
+    <div class="seccion camionetas-seccion">
+        <div class="contenedor">
+            <div class="carrusel" id="carrusel-camionetas">
+                <img src="https://finanmotors.com/wp-content/uploads/2024/09/toyota-hilux.png" alt="Camioneta 1" data-modelo="Hilux" style="display: none;">
+                <img src="https://finanmotors.com/wp-content/uploads/2024/10/ford-ranger.png" alt="Camioneta 2" data-modelo="Ranger" style="display: none;">
+            </div>
+            <div class="formulario">
+                <label for="marca-camionetas">Marca:</label>
+                <select id="marca-camionetas">
+                    <option value="">Seleccione una marca</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Ford">Ford</option>
+                </select>
+
+                <label for="modelo-camionetas">Modelo:</label>
+                <select id="modelo-camionetas">
+                    <option value="">Seleccione un modelo</option>
+                    <option data-marca="Toyota" value="Hilux">Hilux</option>
+                    <option data-marca="Ford" value="Ranger">Ranger</option>
+                    <option data-marca="Ford" value="F-150">F-150</option>
+                </select>
+
+                <button id="continuar-camionetas" style="display:none;">Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección para Camiones -->
+    <div class="seccion camiones-seccion">
+        <div class="contenedor">
+            <div class="carrusel" id="carrusel-camiones">
+                <img src="https://finanmotors.com/wp-content/uploads/2024/09/hino-300.png" alt="Camión 1" data-modelo="Hino300" style="display: none;">
+                <img src="https://finanmotors.com/wp-content/uploads/2024/10/isuzu-npr.png" alt="Camión 2" data-modelo="NPR" style="display: none;">
+            </div>
+            <div class="formulario">
+                <label for="marca-camiones">Marca:</label>
+                <select id="marca-camiones">
+                    <option value="">Seleccione una marca</option>
+                    <option value="Hino">Hino</option>
+                    <option value="Isuzu">Isuzu</option>
+                </select>
+
+                <label for="modelo-camiones">Modelo:</label>
+                <select id="modelo-camiones">
+                    <option value="">Seleccione un modelo</option>
+                    <option data-marca="Hino" value="Hino300">Hino 300</option>
+                    <option data-marca="Isuzu" value="NPR">Isuzu NPR</option>
+                    <option data-marca="Isuzu" value="NQR">Isuzu NQR</option>
+                </select>
+
+                <button id="continuar-camiones" style="display:none;">Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            
+            //-----------------------
+             // Escuchar clic en los botones de tipos de vehículos
+            document.getElementById('autos').addEventListener('click', function() {
+                hideAllSections();
+                document.querySelector('.autos-seccion').style.display = 'block';
+            });
+
+            document.getElementById('suvs').addEventListener('click', function() {
+                hideAllSections();
+                document.querySelector('.suvs-seccion').style.display = 'block';
+            });
+
+            document.getElementById('camionetas').addEventListener('click', function() {
+                hideAllSections();
+                document.querySelector('.camionetas-seccion').style.display = 'block';
+            });
+
+            document.getElementById('camiones').addEventListener('click', function() {
+                hideAllSections();
+                document.querySelector('.camiones-seccion').style.display = 'block';
+            });
+
+            // Función para ocultar todas las secciones de vehículos
+            function hideAllSections() {
+                document.querySelector('.autos-seccion').style.display = 'none';
+                document.querySelector('.suvs-seccion').style.display = 'none';
+                document.querySelector('.camionetas-seccion').style.display = 'none';
+                document.querySelector('.camiones-seccion').style.display = 'none';
+            }
+            
+            
+            //-----------------------
+            // Avaluo para cada modelo de auto
+    const avaluos = {
+        "Corolla": "$20,000",
+        "Camry": "$30,000",
+        "Civic": "$18,000",
+        "Accord": "$25,000"
+    };
+
+    // Función para manejar la lógica de selección y mostrar la imagen
+    function handleSelectionChange(marcaSelectId, modeloSelectId, continuarBtnId, carruselId, opcionesId, avaluoLabelId) {
+        const marcaSelect = document.getElementById(marcaSelectId);
+        const modeloSelect = document.getElementById(modeloSelectId);
+        const continuarBtn = document.getElementById(continuarBtnId);
+        const carrusel = document.getElementById(carruselId);
+        const opciones = document.getElementById(opcionesId);
+        const avaluoLabel = document.getElementById(avaluoLabelId);
+        const images = carrusel.querySelectorAll('img');
+
+        marcaSelect.addEventListener('change', function() {
+            const selectedMarca = marcaSelect.value;
+
+            // Filtrar los modelos basados en la marca seleccionada
+            Array.from(modeloSelect.options).forEach(option => {
+                if (option.dataset.marca === selectedMarca || option.value === "") {
+                    option.style.display = 'block';
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+
+            modeloSelect.value = "";
+            toggleContinueButton();
+        });
+
+        modeloSelect.addEventListener('change', function() {
+            const selectedModelo = modeloSelect.value;
+
+            // Mostrar la imagen correspondiente al modelo seleccionado
+            images.forEach(img => {
+                img.style.display = (img.dataset.modelo === selectedModelo) ? 'block' : 'none';
+            });
+
+            toggleContinueButton();
+        });
+
+        continuarBtn.addEventListener('click', function() {
+            // Ocultar los selectores y el botón "Continuar"
+            marcaSelect.style.display = 'none';
+            modeloSelect.style.display = 'none';
+            continuarBtn.style.display = 'none';
+
+            // Mostrar opciones y el valor del avaluo
+            opciones.style.display = 'block';
+            avaluoLabel.textContent = avaluos[modeloSelect.value];
+        });
+
+        function toggleContinueButton() {
+            if (marcaSelect.value !== "" && modeloSelect.value !== "") {
+                continuarBtn.style.display = 'block';
+            } else {
+                continuarBtn.style.display = 'none';
+            }
+        }
+    }
+
+    // Aplicar la función para cada sección
+    handleSelectionChange('marca-autos', 'modelo-autos', 'continuar-autos', 'carrusel-autos', 'opciones-autos', 'avaluo-autos');
+            handleSelectionChange('marca-suvs', 'modelo-suvs', 'continuar-suvs', 'carrusel-suvs');
+            handleSelectionChange('marca-camionetas', 'modelo-camionetas', 'continuar-camionetas', 'carrusel-camionetas');
+            handleSelectionChange('marca-camiones', 'modelo-camiones', 'continuar-camiones', 'carrusel-camiones');
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Cotización</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .modal, .thank-you {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content, .thank-you-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .form-container {
+            padding: 20px;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f4a100;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .thank-you-content h2, .thank-you-content p {
+            text-align: center;
+        }
+
+        .selectors {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .selectors select {
+            width: 48%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Button to open the modal -->
+<button class="btn-open-modal" id="openModal">Sin entrada</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <div class="form-container">
+            <div class="form-header">
+                <p>Estás a un paso de planificar tu <span>(marca y modelo del auto seleccionado)</span></p>
+            </div>
+            <div class="car-image">
+                <img src="car-image.jpg" alt="Auto Seleccionado">
+                <p>Es un referencia</p>
+                <p>$17,000</p>
+            </div>
+
+            <div class="form-row">
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="nombre">Nombres y Apellidos</label>
+                        <input type="text" id="nombre" name="nombre" value="Pedro Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" value="alejandra@servic.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="provincia">Provincia</label>
+                        <select id="provincia" name="provincia">
+                            <option>Pichincha</option>
+                            <option>Guayas</option>
+                            <option>Azuay</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="agencia">Elige la agencia más cercana</label>
+                        <select id="agencia" name="agencia">
+                            <option>Quito Matriz - Mena Dos</option>
+                            <option>Guayaquil - Centro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="cedula">Cédula de Identidad</label>
+                        <input type="text" id="cedula" name="cedula" value="1708262514" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" id="telefono" name="telefono" value="0999592941" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad</label>
+                        <input type="text" id="ciudad" name="ciudad" value="Quito" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="seleccion">Selecciona</label>
+                <select id="seleccion" name="seleccion">
+                    <option>Mi primer vehículo</option>
+                    <option>Renovar mi vehículo</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="terminos" name="terminos" required>
+                <label for="terminos">Acepto Términos y condiciones</label>
+            </div>
+
+            <button class="btn-submit" id="cotizarBtn">COTIZAR</button>
+        </div>
+    </div>
+</div>
+
+<!-- Thank you modal -->
+<div id="thankYouModal" class="thank-you">
+    <div class="thank-you-content">
+        <h2>GRACIAS POR COTIZAR</h2>
+        <p id="thankYouMessage"></p>
+        <div class="car-image">
+            <img src="car-image.jpg" alt="Auto Seleccionado">
+        </div>
+        <div class="selectors">
+            <select id="monto">
+                <option value="10000">$10,000</option>
+                <option value="15000">$15,000</option>
+                <option value="20000">$20,000</option>
+            </select>
+
+            <select id="tiempo">
+                <option value="12">12 meses</option>
+                <option value="24">24 meses</option>
+            </select>
+        </div>
+        <p>Tasa administrativa: 2.9%</p>
+        <p>Cuota fija: <span id="cuotaFija"></span></p>
+        <p>Valor de inscripción: $500</p>
+    </div>
+</div>
+
+<script>
+    var modal = document.getElementById("myModal");
+    var openModalBtn = document.getElementById("openModal");
+    var closeModalBtn = document.getElementById("closeModal");
+    var cotizarBtn = document.getElementById("cotizarBtn");
+    var thankYouModal = document.getElementById("thankYouModal");
+
+    // Open modal when "Sin entrada" button is clicked
+    openModalBtn.onclick = function() {
+        modal.style.display = "flex";
+    }
+
+    // Close modal when "x" button is clicked
+    closeModalBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Close modal if user clicks outside the modal content
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Show thank you modal when "COTIZAR" is clicked
+    cotizarBtn.onclick = function() {
+        var nombre = document.getElementById("nombre").value;
+        document.getElementById("thankYouMessage").innerText = nombre + ", tu cotización ha sido recibida.";
+        modal.style.display = "none";
+        thankYouModal.style.display = "flex";
+
+        // Calculate and display cuota fija based on selected amount and time
+        var monto = document.getElementById("monto").value;
+        var tiempo = document.getElementById("tiempo").value;
+        var cuotaFija = (parseFloat(monto) * 1.029) / parseInt(tiempo);
+        document.getElementById("cuotaFija").innerText = "$" + cuotaFija.toFixed(2);
+    }
+</script>
+
+</body>
+</html>

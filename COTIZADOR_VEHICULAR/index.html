@@ -14,26 +14,26 @@
         <section class="cotizador">
             <h1 class="texto-vehicular">¿Qué tipo de <span class="highlight">vehículo</span> deseas?</h1>
             <div class="vehicle-types">
-                <div class="vehicle">
+                <div class="vehicle" id="selector_autos">
                     <!--IMAGENES DE BASE YA DIMENSIONADAS, SERIA DE VER IMAGENES PROPIAS DE ESTA SECCION-->
                     <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en"
                         alt="Autos">
                     <p>Autos</p>
                 </div>
 
-                <div class="vehicle">
-                    <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en"
+                <div class="vehicle" id="selector_suvs">
+                    <img src="https://www.kia.com/content/dam/kwcms/kme/global/en/assets/vehicles/kia-sportage-nq5-my22/discover/kia-sportage-hev-gtl-my22-trimlist.png"
                         alt="SUVs">
                     <p>SUVs</p>
                 </div>
 
-                <div class="vehicle">
+                <div class="vehicle" id="selector_camionetas">
                     <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en"
                         alt="Camionetas">
                     <p>Camionetas</p>
                 </div>
 
-                <div class="vehicle">
+                <div class="vehicle" id="selector_camiones">
                     <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en"
                         alt="Camiones">
                     <p>Camiones</p>
@@ -42,12 +42,13 @@
             </div>
         </section>
 
+      
         <!--SECCIONES INDEPENDIENTES-->
 
         <!--AUTOS-->
 
-        <!-- Sección oculta que aparecerá al seleccionar Autos -->
-        <section class="detalle-vehiculo" id="detalle-vehiculo-autos" style="display: none;">
+        <!-- Sección oculta que aparecerá al seleccionar Autos  style="display: none;"-->
+        <section class="detalle-vehiculo" id="detalle-vehiculo-autos" style="display: none;" >
             <div class="vehiculo-container">
                 <!-- Columna izquierda: Imagen del vehículo -->
                 <div class="vehiculo-imagen">
@@ -86,7 +87,7 @@
                     <!-- SECCION DE CON ENTRADA PORCENTAJE Y MESES PLAZO-->
                     <div class="opciones-con-entrada" id="opciones-con-entrada" style="display: none;" >
                         <select id="porcentaje" name="porcentaje" placeholder="porcentaje">
-                            <option value="">Seleccione un porcentaje de entrada</option>
+                            <option value="">Porcentaje de Entrada</option>
                             <option value="10">10%</option>
                             <option value="20">20%</option>
                             <option value="30">30%</option>
@@ -96,7 +97,7 @@
                           
                         </select>
                         <select id="meses-plazo" name="meses-plazo" placeholder="meses-plazo">
-                            <option value="">Seleccione la cantidad de meses.</option>
+                            <option value="">Cantidad de Meses.</option>
                             <option value="12">12 meses</option>
                             <option value="24">24 meses</option>
                             <option value="36">36 meses</option>
@@ -105,9 +106,14 @@
                             
                      
                         </select>
-                        <input class="precio-vehiculo-con-entrada" type="number" id="precio-vehiculo-con-entrada" disabled value="">
+                        <input class="precio-vehiculo-con-entrada" type="text" id="precio-vehiculo-con-entrada" disabled value="">
+
+                        <!-- SOLO LOS USO COMO REFLEJO DE LOS VALORE QUE DEBEN SALIR
+                        
                         <input  class="precio-porcentaje" type="text" id="precio-porcentaje" disabled value="">
                         <input  class="precio-meses" type="text" id="precio-meses" disabled value="">
+
+                        -->
                         <input  class="estimado" type="text" id="estimado" disabled value="">
 
                         <!-- Botón de Continuar -->
@@ -206,16 +212,16 @@
 
 
                             <div class="form-row" id="formfinal">
-                                <p class="title">Monto Planificado:</p>
+                                <p class="title">Monto Planificado($):</p>
                                 <input class="precio-vehiculo-pdf" type="text" id="precio-vehiculo-pdf" disabled value="">
-                                <p class="title">Tiempo de Planificación:</p>
-                                <input class="meses-F" id="meses-F" ></input>
-                                <p class="title">Porcentaje de Entrada:</p>
-                                <input class="porcentaje-F" id="porcentaje-F" ></input>
-                                <p class="title">Tasa Administrativa:</p>
-                                <input class="tasa-F" id="tasa-F" ></input>
-                                <p class="title">Cuota Fija:</p>
-                                <input class="cuota-F" id="cuota-F" ></input>
+                                <p class="title">Tiempo de Planificación (Meses):</p>
+                                <input class="meses-F" id="meses-F"  disabled value="">
+                                <p class="title">Porcentaje de Entrada (%):</p>
+                                <input class="porcentaje-F" id="porcentaje-F" disabled value="">
+                                <p class="title">Tasa Administrativa (%):</p>
+                                <input class="tasa-F" id="tasa-F" disabled value="">
+                                <p class="title">Cuota Fija ($):</p>
+                                <input class="cuota-F" id="cuota-F" disabled value="">
                                 <!-- 
                                 <p class="title">Valor de la Inscripción:</p>
                                 <input class="value"></input>

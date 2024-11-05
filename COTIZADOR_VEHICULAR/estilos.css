@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #9e2f2f;
     text-align: center;
 }
 
@@ -41,8 +41,12 @@ h1 {
     width: 150px;
     height: auto;
     border-radius: 10px;
+    transition: transform 2s ease; /* Transición suave de 2 segundos */
 }
 
+.vehicle:hover img {
+    transform: scale(1.2); /* Aumenta el tamaño al 120% */
+}
 
 .vehicle p {
     margin-top: 10px;
@@ -51,21 +55,32 @@ h1 {
 }
 
 
+.vehicle {
+    cursor: pointer; /* Cambia el cursor para indicar que es clickeable */
+}
+
+.vehicle.selected {
+    opacity: 1; /* Asegura que el vehículo seleccionado tenga opacidad total */
+}
+
+/* LINEA HORIZAONTAL */
+
+
 /* ---------- VEHICULOS     ---------- */
 
-.detalle-vehiculo {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: cadetblue;
-}
-.detalle-vehiculo-suvs{
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(117, 119, 219);
+    .detalle-vehiculo {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: cadetblue; 
+    }
+    .detalle-vehiculo-suvs{
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(117, 119, 219);
 
 }
 
@@ -87,7 +102,7 @@ h1 {
 
 .vehiculo-container {
     display: flex;
-    gap: 50px;
+    gap: 150px;
     margin: 20px;
 }
 
@@ -99,16 +114,23 @@ h1 {
 
 .vehiculo-selectores-container {
     display: flex;
+    
     flex-direction: column;
     gap: 10px;
     justify-content: space-between;
+    width: 300px; /* Ancho fijo para mantener consistencia cuando paso con CONTINUAR */
 }
 
 .vehiculo-selectores {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
+.vehiculo-selectores label {
+    
+  
+    text-align: left; /* Alinea el texto de los labels a la izquierda */
+    }
 
 .vehiculo-selectores select {
     padding: 5px;
@@ -117,6 +139,10 @@ h1 {
 
 .precio-vehiculo{
     border: none;
+    color: black;
+    background-color: white;
+    font-size: 22px;
+    margin-top: 10px;
 }
 
 /* BOTON DE CONTINUAR */
@@ -124,10 +150,11 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     color: white;
-    background-color: orange;
+    background-color: rgb(35, 161, 56);
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    justify-content: center;
 }
 
 button:hover {
@@ -187,6 +214,9 @@ button:hover {
     margin: 10px auto; /* Centra horizontalmente el input */
     width: 80%; /* Ajusta el ancho del input */
     text-align: center; /* Centra el texto dentro del input */
+    border: none;
+    background-color: white;
+    color: black;
 }
 
 .cerrar {
@@ -267,7 +297,7 @@ button:hover {
     display: grid;
     justify-content: center;
     align-items: center;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 60% 30%;
     gap: 10px;
     background-color: white;
     padding: 20px;

@@ -66,6 +66,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 precio: 18000,
             },
             {
+                tipo: "autos",
+                nombre: "Prius",
+                imagen:
+                    "https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en",
+                precio: 13000,
+            },
+            {
                 tipo: "camionetas",
                 nombre: "Hilux",
                 imagen:
@@ -133,6 +140,20 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     //---------------------------
+    document.querySelectorAll('.vehicle').forEach(vehicle => {
+        vehicle.addEventListener('click', function () {
+            // Elimina la clase 'selected' de todos los vehículos
+            document.querySelectorAll('.vehicle').forEach(v => {
+                v.classList.remove('selected');
+                v.style.opacity = "0.25"; // Aplica opacidad a todos los vehículos
+            });
+    
+            // Agrega la clase 'selected' al vehículo seleccionado
+            this.classList.add('selected');
+            this.style.opacity = "1"; // Restablece la opacidad solo para el seleccionado
+        });
+    });
+    
 
     // MOSTRAR LA SECCION DE VEHICULOS SELECCIONADOS AUTOS, SUVS, CAMIONETAS, CAMION
     vehicles.forEach((vehicle) => {
@@ -341,6 +362,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Mostrar la parte de los botones "Con Entrada" y "Sin Entrada" en la misma columna derecha
         document.getElementById("opciones-vehiculo").style.display = "flex";
+        
+        document.getElementById("precio").value = "$" + avaluoActual;
+
     });
 
     //SUVS
@@ -350,6 +374,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Mostrar la parte de los botones "Con Entrada" y "Sin Entrada" en la misma columna derecha
         document.getElementById("opciones-vehiculo-suvs").style.display = "flex";
+
+        document.getElementById("precio-suvs").value = "$" + avaluoActual;
     });
 
 
@@ -425,7 +451,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("con-entrada").addEventListener("click", () => {
         document.getElementById("precio-vehiculo-con-entrada").value = avaluoActual;
         const precioVehiculo = parseFloat(document.getElementById("precio-vehiculo-con-entrada").value);
-        console.log(avaluoActual);
+       
+        console.log("AVALUO DE ESTA PARTE "+avaluoActual);
+       
     
         document.getElementById("porcentaje").addEventListener("change", () => {
             const porcentajeEntrada = parseFloat(document.getElementById("porcentaje").value);
@@ -452,6 +480,11 @@ document.addEventListener("DOMContentLoaded", () => {
     
         document.getElementById("opciones-vehiculo").style.display = "none";
         document.getElementById("opciones-con-entrada").style.display = "flex";
+
+        //la etiqueta del input tiene que ser TYPE text
+        document.getElementById("precio-vehiculo-con-entrada").value = "$" + precioVehiculo;
+
+        
     });
 
 
@@ -512,7 +545,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mostrarPopup();
         document.getElementById("imagen-carro").src = imagenSeleccionada;
         // Asignar el valor al campo de "precio-vehiculo-con-entrada"
-        document.getElementById("precio-vehiculo-pop").value = avaluoActual;
+        document.getElementById("precio-vehiculo-pop").value = "$" + avaluoActual;
     });
 
 
@@ -523,7 +556,7 @@ document.addEventListener("DOMContentLoaded", () => {
             mostrarPopup();
             document.getElementById("imagen-carro").src = imagenSeleccionada;
             // Asignar el valor al campo de "precio-vehiculo-con-entrada"
-            document.getElementById("precio-vehiculo-pop").value = avaluoActual;
+            document.getElementById("precio-vehiculo-pop").value =  "$" + avaluoActual;
             
         });
 

@@ -12,29 +12,29 @@
     <div class="contianer" id="container">
         <!--seccion Inicial de AUTOS, SUVS, CAMIONETAS, CAMIONES-->
         <section class="cotizador">
-            <h1 class="texto-vehicular">¿Qué tipo de <span class="highlight">vehículo</span> deseas?</h1>
+            <p id="texto-vehicular" class="texto-vehicular">¿Qué tipo de <span class="highlight">vehículo</span> deseas?</p>
             <div class="vehicle-types">
                 <div class="vehicle" id="selector_autos">
                     <!--IMAGENES DE BASE YA DIMENSIONADAS, SERIA DE VER IMAGENES PROPIAS DE ESTA SECCION-->
-                    <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en"
+                    <img src="https://finanmotors.com/wp-content/uploads/2024/09/chevroletaveo.png"
                         alt="Autos">
                     <p>Autos</p>
                 </div>
 
                 <div class="vehicle" id="selector_suvs">
-                    <img src="https://www.kia.com/content/dam/kwcms/kme/global/en/assets/vehicles/kia-sportage-nq5-my22/discover/kia-sportage-hev-gtl-my22-trimlist.png"
+                    <img src="https://finanmotors.com/wp-content/uploads/2024/09/chevroletaveo.png"
                         alt="SUVs">
                     <p>SUVs</p>
                 </div>
 
                 <div class="vehicle" id="selector_camionetas">
-                    <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en"
+                    <img src="https://finanmotors.com/wp-content/uploads/2024/09/chevroletaveo.png"
                         alt="Camionetas">
                     <p>Camionetas</p>
                 </div>
 
                 <div class="vehicle" id="selector_camiones">
-                    <img src="https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-sedan/non-VLP/10-Family/MY25_Civic_Family_Card_Jelly_2x.png?sc_lang=en"
+                    <img src="https://finanmotors.com/wp-content/uploads/2024/09/chevroletaveo.png"
                         alt="Camiones">
                     <p>Camiones</p>
                 </div>
@@ -47,8 +47,8 @@
 
         <!--AUTOS-->
 
-        <!-- Sección oculta que aparecerá al seleccionar Autos  style="display: none;"-->
-        <section class="detalle-vehiculo" id="detalle-vehiculo-autos" style="display: none;" >
+        <!-- Sección oculta que aparecerá al seleccionar Autos -->
+        <section class="detalle-vehiculo" id="detalle-vehiculo-autos" style="display: none;">
             <div class="vehiculo-container">
                 <!-- Columna izquierda: Imagen del vehículo -->
                 <div class="vehiculo-imagen">
@@ -56,10 +56,10 @@
                 </div>
 
                 <!-- Columna derecha: Selectores de marca y modelo -->
-                <div class="vehiculo-selectores-container">
+                <div class="vehiculo-selectores-container" id="vehiculo-selectores-container">
                     <!-- Selectores de marca y modelo -->
-                    <div class="vehiculo-selectores" id="selectores">
-                        <label for="marca">Marca:</label>
+                    <div class="vehiculo-selectores" id="selectores" >
+                        <label class="marca" for="marca">Marca:</label>
                         <select id="marca">
                             <option value="">Selecciona una marca</option>
                             <option value="toyota">Toyota</option>
@@ -67,13 +67,13 @@
                             <option value="chevrolet">Chevrolet</option>
                         </select>
 
-                        <label for="modelo">Modelo:</label>
+                        <label class="modelo" for="modelo">Modelo:</label>
                         <select id="modelo" disabled>
                             <option value="">Selecciona un modelo</option>
                         </select>
 
                         <!-- Botón de Continuar -->
-                        <button id="continuar" style="display: none;">Continuar</button>
+                        <button class="continuar" id="continuar" style="display: none;">Continuar</button>
                     </div>
 
                     <!-- Nueva Sección con los botones "Con Entrada" y "Sin Entrada" (inicialmente oculta) -->
@@ -85,8 +85,10 @@
 
 
                     <!-- SECCION DE CON ENTRADA PORCENTAJE Y MESES PLAZO-->
-                    <div class="opciones-con-entrada" id="opciones-con-entrada" style="display: none;" >
-                        <select id="porcentaje" name="porcentaje" placeholder="porcentaje">
+                    
+                    <div class="opciones-con-entrada" id="opciones-con-entrada" style="display: none;">
+                          <label class="entrada_opciones" for="porcentaje">Su porcentaje de Entrada:</label>
+                        <select class="entrada_opciones" id="porcentaje" name="porcentaje" placeholder="porcentaje">
                             <option value="">Porcentaje de Entrada</option>
                             <option value="10">10%</option>
                             <option value="20">20%</option>
@@ -96,26 +98,72 @@
                             <option value="60">60%</option>
                           
                         </select>
-                        <select id="meses-plazo" name="meses-plazo" placeholder="meses-plazo">
-                            <option value="">Cantidad de Meses.</option>
-                            <option value="12">12 meses</option>
-                            <option value="24">24 meses</option>
-                            <option value="36">36 meses</option>
-                            <option value="48">48 meses</option>
-                            <option value="72">72 meses</option>
-                            
+                        <label class="entrada_opciones" for="montoSelect">Selecciona el Monto:</label>
+                    <select id="montoSelect">
+                        <option value="10">10,000</option>
+                        <option value="10.500">10,500</option>
+                        <option value="11.000">11,000</option>
+                        <option value="11.500">11,500</option>
+                        <option value="12.000">12,000</option>
+                        <option value="12.500">12,500</option>
+                        <option value="13.000">13,000</option>
+                        <option value="13.500">13,500</option>
+                        <option value="14.000">14,000</option>
+                        <option value="14.500">14,500</option>
+                        <option value="15.000">15,000</option>
+                        <option value="15.500">15,500</option>
+                        <option value="16.000">16,000</option>
+                        <option value="16.500">16,500</option>
+                        <option value="17.000">17,000</option>
+                        <option value="17.500">17,500</option>
+                        <option value="18.000">18,000</option>
+                        <option value="18.500">18,500</option>
+                        <option value="19.000">19,000</option>
+                        <option value="19.500">19,500</option>
+                        <option value="20.000">20,000</option>
+                        <option value="20.500">20,500</option>
+                        <option value="21.000">21,000</option>
+                        <option value="21.500">21,500</option>
+                        <option value="22.000">22,000</option>
+                        <option value="22.500">22,500</option>
+                        <option value="23.000">23,000</option>
+                        <option value="23.500">23,500</option>
+                        <option value="24.000">24,000</option>
+                        <option value="24.500">24,500</option>
+                        <option value="25.000">25,000</option>
+                        <option value="25.500">25,500</option>
+                        <option value="26.000">26,000</option>
+                        <option value="26.500">26,500</option>
+                        <option value="27.000">27,000</option>
+                        <option value="27.500">27,500</option>
+                        <option value="28.000">28,000</option>
+                        <option value="28.500">28,500</option>
+                        <option value="29.000">29,000</option>
+                        <option value="29.500">29,500</option>
+                        <option value="30.000">30,000</option>
+                        <option value="30.500">30,500</option>
+                        <option value="31.000">31,000</option>
+                        <option value="31.500">31,500</option>
+                        <option value="32.000">32,000</option>
+                        <option value="32.500">32,500</option>
+                        <option value="33.000">33,000</option>
+                    </select>
+                    
+                    
+                    <label class="entrada_opciones"  for="mesesSelect">Selecciona los Meses:</label>
+                    <select id="mesesSelect">
+                        <option value="24_MESES">24 Meses</option>
+                        <option value="36_MESES">36 Meses</option>
+                        <option value="48_MESES">48 Meses</option>
+                        <option value="60_MESES">60 Meses</option>
+                        <option value="72_MESES">72 Meses</option>
+                    </select>
+                    
+                    <div>
+                        <p class="precio_mensual">Precio Mensual: <span id="resultadoPrecio"></span></p>
+                        <p class="inscripcion">Inscripción: <span id="resultadoInscripcion"></span></p>
+                    </div>
                      
-                        </select>
-                        <input class="precio-vehiculo-con-entrada" type="text" id="precio-vehiculo-con-entrada" disabled value="">
-
-                        <!-- SOLO LOS USO COMO REFLEJO DE LOS VALORE QUE DEBEN SALIR
-                        
-                        <input  class="precio-porcentaje" type="text" id="precio-porcentaje" disabled value="">
-                        <input  class="precio-meses" type="text" id="precio-meses" disabled value="">
-
-                        -->
-                        <input  class="estimado" type="text" id="estimado" disabled value="">
-
                         <!-- Botón de Continuar -->
                         <button id="continuar-con-entrada">Continuar</button>
 
@@ -130,10 +178,10 @@
 
         <!-- POPUP-->
         <!-- Popup -->
-        <div id="popup" class="popup" style="display: none;">
+        <div id="popup" class="popup" style="display: none;" >
             <div class="popup-contenido">
                 <span class="cerrar" id="cerrarPop">&times;</span>
-                <h2>Gracias por cotizar con nosotros</h2>
+                <p class="gracias_cotizar">Gracias por cotizar con nosotros</p>
 
                 <div class="imagen-precio" id="imagen-precio">
                     <img id="imagen-carro" src="" alt="Imagen del carro" class="imagen-carro">
@@ -145,13 +193,13 @@
                     <div class="columna izquierda">
 
                         <label class="nombres-y-apellidos" style="display:none;">Nombres y Apellidos</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombres y Apellidos">
+                        <input class="pop-input" type="text" id="nombre" name="nombre" placeholder="Nombres y Apellidos">
 
                         <label class="correo-electronico" style="display:none;">Correo Electronico</label>
-                        <input type="email" id="correo" name="correo" placeholder="Correo Electronico">
+                        <input class="pop-input" type="email" id="correo" name="correo" placeholder="Correo Electronico">
 
                         <label class="provincia" style="display:none;">Provincia</label>
-                        <select id="provincia" name="provincia" placeholder="provincia">
+                        <select class="pop-input" id="provincia" name="provincia" placeholder="provincia">
                             <option value="">Seleccione una Provincia</option>
                             <option value="Pichincha">Pichincha</option>
                             <option value="Santo_Domingo">Santo Domingo</option>
@@ -163,12 +211,12 @@
                         </select>
                         
                         <label for="agencia"></label>
-                        <select id="agencia" disabled>
+                        <select class="pop-input" id="agencia" disabled>
                             <option value="">Selecciona la agencia mas cercana</option>
                         </select>
 
                         <label class="selecciona" for="primero-renovacion"  style="display:none;">Selecciona</label>
-                        <select id="primero-renovacion">
+                        <select class="pop-input" id="primero-renovacion">
                             <option value="primero">Mi Primer vehículo</option>
                             <option value="renovacion">Renovar mi vehículo</option>
 
@@ -180,13 +228,13 @@
                     </div>
                     <div class="columna derecha">
                         <label for="cedula" style="display:none;">Cédula:</label>
-                        <input type="text" id="cedula" name="cedula" placeholder="Cedula de Identidad">
+                        <input class="pop-input" type="text" id="cedula" name="cedula" placeholder="Cedula de Identidad">
 
                         <label for="telefono" style="display:none;">Teléfono:</label>
-                        <input type="text" id="telefono" name="telefono" placeholder="Telefono">
+                        <input class="pop-input" type="text" id="telefono" name="telefono" placeholder="Telefono">
 
                         <label for="ciudad" style="display:none;">Ciudad:</label>
-                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad de Residencia">
+                        <input class="pop-input" type="text" id="ciudad" name="ciudad" placeholder="Ciudad de Residencia">
                         
                     </div>
                 </div>

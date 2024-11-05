@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+
+        document.addEventListener("DOMContentLoaded", () => {
     //-----------------------
 
     //VARIABLES A USAR EN LA LOGICA
@@ -575,6 +576,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     var closePopBtn = document.getElementById("cerrarPop");
+    
+    
+    
+    
+    // Cargar el archivo JSON
+// Declaración de variables globales
+
+
+fetch('')
+    .then(response => response.json())
+    .then(data => {
+        const montoSelect = document.getElementById('montoSelect');
+        mesesSelect = document.getElementById('mesesSelect');
+        resultadoPrecio = document.getElementById('resultadoPrecio');
+        const resultadoInscripcion = document.getElementById('resultadoInscripcion');
+        
+        montoSelect.addEventListener('change', actualizarResultado);
+        mesesSelect.addEventListener('change', actualizarResultado);
+        
+        function actualizarResultado() {
+            const montoSeleccionado = parseFloat(montoSelect.value);
+            const mesesSeleccionado = mesesSelect.value;
+            
+            // Buscar en JSON el objeto que coincida con el monto
+            const resultado = data.find(item => item.MONTO === montoSeleccionado);
+            
+            if (resultado) {
+                resultadoPrecio.innerText = resultado[mesesSeleccionado];
+                resultadoInscripcion.innerText = resultado.INSCRIPCION;
+            } else {
+                resultadoPrecio.innerText = "No disponible";
+                resultadoInscripcion.innerText = "No disponible";
+            }
+        }
+    })
+    .catch(error => console.error('Error al cargar el archivo JSON:', error));
 
     closePopBtn.onclick = function () {
         document.getElementById("popup").style.display = "none";
@@ -596,7 +633,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("pdf").style.display = "block";
 
         document.getElementById("precio-vehiculo-pdf").value = avaluoActual;
-        document.getElementById("meses-F").value = mesesGlobal;
+        document.getElementById("meses-F").value = mesesSelect;
         document.getElementById("porcentaje-F").value = porcentajeGlobal;
 
         switch (mesesGlobal) {
@@ -621,7 +658,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
         }
 
-        document.getElementById("cuota-F").value = estimadoGlobal;
+        document.getElementById("cuota-F").value = resultadoPrecio;
        
 
 
@@ -649,3 +686,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // Escuchar el cambio en el input y actualizar el mensaje
     nombreInput.addEventListener("input", actualizarMensaje);
 });
+
+
